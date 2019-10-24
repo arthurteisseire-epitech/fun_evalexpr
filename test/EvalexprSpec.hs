@@ -10,6 +10,8 @@ main = hspec spec
 spec :: Spec
 spec = do
     describe "simple" $ do
+        it "test value" $
+            evalExpr (Value 6) `shouldBe` 6
         it "test addition" $
             evalExpr (Add (Value 6) (Value 7)) `shouldBe` 13
         it "test substraction" $
