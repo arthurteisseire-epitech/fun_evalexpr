@@ -1,8 +1,8 @@
-module EvalexprSpec where
+module ExpressionSpec where
 
 
 import Test.Hspec
-import Evalexpr
+import Expression
 
 main :: IO ()
 main = hspec spec

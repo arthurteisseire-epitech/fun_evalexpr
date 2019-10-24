@@ -1,5 +1,4 @@
-module Evalexpr where
-
+module Expression where
 
 data Expr = Expr
     | Add Expr Expr
@@ -8,7 +7,6 @@ data Expr = Expr
     | Div Expr Expr
     | Pow Expr Expr
     | Val Float
-
 
 evalExpr :: Expr -> Float
 evalExpr (Add a b) = operation a b (+)
