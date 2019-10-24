@@ -10,6 +10,7 @@ data Expr = Expr
     | Div Expr Expr
     | Pow Expr Expr
     | Val Float
+    deriving (Eq, Show)
 
 evalExpr :: Expr -> Float
 evalExpr (Add a b) = operation a b (+)
