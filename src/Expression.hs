@@ -1,4 +1,7 @@
-module Expression where
+module Expression 
+    ( Expr(..)
+    , evalExpr
+    ) where
 
 data Expr = Expr
     | Add Expr Expr
