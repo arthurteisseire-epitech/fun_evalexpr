@@ -14,13 +14,9 @@
     <orderEntry type="library" name="ghc-prim-0.5.3" level="project" />
     <orderEntry type="library" name="integer-gmp-1.0.2.0" level="project" />
     <orderEntry type="library" name="hspec-2.7.1" level="project" />
-    <orderEntry type="library" name="QuickCheck-2.12.6.1" level="project" />
-    <orderEntry type="library" name="hspec-core-2.6.1" level="project" />
-    <orderEntry type="library" name="hspec-discover-2.6.1" level="project" />
     <orderEntry type="library" name="hspec-expectations-0.8.2" level="project" />
     <orderEntry type="library" name="containers-0.6.0.1" level="project" />
     <orderEntry type="library" name="deepseq-1.4.4.0" level="project" />
-    <orderEntry type="library" name="erf-2.0.0.0" level="project" />
     <orderEntry type="library" name="random-1.1" level="project" />
     <orderEntry type="library" name="template-haskell-2.14.0.0" level="project" />
     <orderEntry type="library" name="tf-random-0.5" level="project" />
@@ -42,5 +38,9 @@
     <orderEntry type="library" name="colour-2.3.4" level="project" />
     <orderEntry type="library" name="unix-2.7.2.2" level="project" />
     <orderEntry type="library" name="bytestring-0.10.8.2" level="project" />
+    <orderEntry type="library" name="QuickCheck-2.13.2" level="project" />
+    <orderEntry type="library" name="hspec-core-2.7.1" level="project" />
+    <orderEntry type="library" name="hspec-discover-2.7.1" level="project" />
+    <orderEntry type="library" name="splitmix-0.0.3" level="project" />
   </component>
 </module>
