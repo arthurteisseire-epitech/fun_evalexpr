@@ -11,21 +11,21 @@ spec :: Spec
 spec = do
     describe "simple" $ do
         it "test value" $
-            evalExpr (Value 6) `shouldBe` 6
+            evalExpr (Val 6) `shouldBe` 6
         it "test addition" $
-            evalExpr (Add (Value 6) (Value 7)) `shouldBe` 13
+            evalExpr (Add (Val 6) (Val 7)) `shouldBe` 13
         it "test substraction" $
-            evalExpr (Sub (Value 6) (Value 7)) `shouldBe` -1
+            evalExpr (Sub (Val 6) (Val 7)) `shouldBe` -1
         it "test multiplication" $
-            evalExpr (Mul (Value 6) (Value 7)) `shouldBe` 42
+            evalExpr (Mul (Val 6) (Val 7)) `shouldBe` 42
         it "test division" $
-            evalExpr (Div (Value 12) (Value 3)) `shouldBe` 4
+            evalExpr (Div (Val 12) (Val 3)) `shouldBe` 4
         it "test power" $
-            evalExpr (Pow (Value 3) (Value 3)) `shouldBe` 27
+            evalExpr (Pow (Val 3) (Val 3)) `shouldBe` 27
 
     describe "complex" $ do
         it "test Multiply one addition and one multiplication" $
-            evalExpr (Mul (Add (Value 1) (Value 1)) (Mul (Value 11) (Value 2))) `shouldBe` 44
+            evalExpr (Mul (Add (Val 1) (Val 1)) (Mul (Val 11) (Val 2))) `shouldBe` 44
         it "test Divide one multiplication and one addition " $
-            evalExpr (Div (Mul (Value 4) (Value 5)) (Add (Value 2) (Value 2))) `shouldBe` 5
+            evalExpr (Div (Mul (Val 4) (Val 5)) (Add (Val 2) (Val 2))) `shouldBe` 5
 
