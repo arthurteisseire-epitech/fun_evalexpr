@@ -2,7 +2,7 @@ module ValueParser
     ( parseVal
     ) where
 
-import           Control.Applicative
+import           Control.Applicative          ((<|>))
 import           Data.Char
 import           Expression
 import           ParseUtils
