@@ -20,5 +20,6 @@ parse = parseAdd <|> parseVal
 parseAdd :: ReadP Expr
 parseAdd = do
     i1 <- parseVal
-    i2 <- parseVal
+    satisfy (== '+')
+    i2 <- parse
     return (Add i1 i2)
