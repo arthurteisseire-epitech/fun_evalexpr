@@ -1,6 +1,6 @@
 ##
-## EPITECH PROJECT, 2018
-## FUN_deBruijn_2018
+## EPITECH PROJECT, 2019
+## fun_evalExpr
 ## File description:
 ## Makefile
 ##
