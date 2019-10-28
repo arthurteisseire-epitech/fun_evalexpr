@@ -17,3 +17,7 @@ spec =
             parseExpr "12.0" `shouldBe` Just (Val 12)
         it "test parsing value" $
             parseExpr "21.2" `shouldBe` Just (Val 21.2)
+        it "test parsing value" $
+            parseExpr "+21.2" `shouldBe` Just (Val 21.2)
+        it "test parsing value" $
+            parseExpr "-21.2" `shouldBe` Just (Val (-21.2))

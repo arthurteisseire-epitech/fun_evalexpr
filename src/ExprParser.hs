@@ -6,18 +6,25 @@ import           Debug.Trace
 import           Expression
 import           Text.ParserCombinators.ReadP
 
-(<++>) a b = (++) <$> a <*> b
+(<++>) :: ReadP String -> ReadP String -> ReadP String
+(<++>) a b = fmap (++) a <*> b
 
-(<:>) a b = (:) <$> a <*> b
+(<:>) :: ReadP Char -> ReadP String -> ReadP String
+(<:>) a b = fmap (:) a <*> b
 
+number :: ReadP String
 number = munch1 isDigit
 
+plus :: ReadP String
 plus = char '+' *> number
 
+minus :: ReadP String
 minus = char '-' <:> number
 
+integer :: ReadP String
 integer = plus <|> minus <|> number
 
+decimal :: ReadP String
 decimal = option "" $ char '.' <:> number
 
 parseVal :: ReadP Expr
