@@ -12,7 +12,7 @@ evalExpr s
     | isNothing p = Nothing
     | otherwise = Just $ compute (fromJust p)
   where
-    p = parseExpr s
+    p = parseExpr (filter (/= ' ') s)
 
 parseExpr :: String -> Maybe Expr
 parseExpr s
