@@ -1,25 +1,58 @@
 module ExprParser where
 
 import           Control.Applicative          ((<|>))
+import           Data.Maybe
 import           Debug.Trace
 import           Expression
 import           ParseUtils
 import           Text.ParserCombinators.ReadP
-import           ValueParser
+
+evalExpr :: String -> Maybe Float
+evalExpr s
+    | isNothing p = Nothing
+    | otherwise = Just $ compute (fromJust p)
+  where
+    p = parseExpr s
 
 parseExpr :: String -> Maybe Expr
 parseExpr s
     | null a = Nothing
     | otherwise = Just $ fst $ last a
   where
-    a = readP_to_S parse s
+    a = readP_to_S additive s
 
-parse :: ReadP Expr
-parse = parseAdd <|> parseVal
+additive :: ReadP Expr
+additive = multitivePlusAdditive <|> multitive
 
-parseAdd :: ReadP Expr
-parseAdd = do
-    i1 <- parseVal
+multitivePlusAdditive :: ReadP Expr
+multitivePlusAdditive = do
+    m <- multitive
     satisfy (== '+')
-    i2 <- parse
-    return (Add i1 i2)
+    a <- additive
+    return $ Add m a
+
+multitive :: ReadP Expr
+multitive = primaryPlusMultitive <|> primary
+
+primaryPlusMultitive :: ReadP Expr
+primaryPlusMultitive = do
+    p <- primary
+    satisfy (== '*')
+    m <- multitive
+    return $ Mul p m
+
+additiveWithParentheses :: ReadP Expr
+additiveWithParentheses = do
+    satisfy (== '(')
+    a <- additive
+    satisfy (== ')')
+    return a
+
+primary :: ReadP Expr
+primary = additiveWithParentheses <|> decimal
+
+decimal :: ReadP Expr
+decimal = Val . rd <$> integer <++> decimalPart
+  where
+    rd = read :: String -> Float
+    decimalPart = option "" $ char '.' <:> number

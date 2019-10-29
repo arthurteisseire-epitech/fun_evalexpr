@@ -1,6 +1,6 @@
 module Expression 
     ( Expr(..)
-    , evalExpr
+    , compute
     ) where
 
 data Expr = Expr
@@ -12,13 +12,13 @@ data Expr = Expr
     | Val Float
     deriving (Eq, Show)
 
-evalExpr :: Expr -> Float
-evalExpr (Add a b) = operation a b (+)
-evalExpr (Sub a b) = operation a b (-)
-evalExpr (Mul a b) = operation a b (*)
-evalExpr (Div a b) = operation a b (/)
-evalExpr (Pow a b) = operation a b (**)
-evalExpr (Val a) = a
+compute :: Expr -> Float
+compute (Add a b) = operation a b (+)
+compute (Sub a b) = operation a b (-)
+compute (Mul a b) = operation a b (*)
+compute (Div a b) = operation a b (/)
+compute (Pow a b) = operation a b (**)
+compute (Val a) = a
 
 operation :: Expr -> Expr -> (Float -> Float -> Float) -> Float
-operation expr1 expr2 func = func (evalExpr expr1) (evalExpr expr2)
+operation expr1 expr2 func = func (compute expr1) (compute expr2)
