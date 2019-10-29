@@ -29,3 +29,10 @@ spec = do
             evalExpr "4 +   3 *2" `shouldBe` Just 10
         it "test expression with parentheses" $
             evalExpr "4 +   3 * ( 2         + 8   ) " `shouldBe` Just 34
+    describe "substraction" $ do
+        it "test negative value" $
+            evalExpr " -3" `shouldBe` Just (-3)
+        it "test sub" $
+            evalExpr "3-3" `shouldBe` Just 0
+        it "test expression with parentheses" $
+            evalExpr "4 +   3 * ( 2         - 8   ) " `shouldBe` Just (-14)

@@ -22,7 +22,7 @@ parseExpr s
     a = readP_to_S additive s
 
 additive :: ReadP Expr
-additive = multitivePlusAdditive <|> multitive
+additive = multitivePlusAdditive <|> multitiveMinusAdditive <|> multitive
 
 multitivePlusAdditive :: ReadP Expr
 multitivePlusAdditive = do
@@ -30,6 +30,13 @@ multitivePlusAdditive = do
     satisfy (== '+')
     a <- additive
     return $ Add m a
+
+multitiveMinusAdditive :: ReadP Expr
+multitiveMinusAdditive = do
+    m <- multitive
+    satisfy (== '-')
+    a <- additive
+    return $ Sub m a
 
 multitive :: ReadP Expr
 multitive = primaryPlusMultitive <|> primary
