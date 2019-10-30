@@ -21,4 +21,4 @@ compute (Pow a b) = operation a b (**)
 compute (Val a) = a
 
 operation :: Expr -> Expr -> (Float -> Float -> Float) -> Float
-operation expr1 expr2 func = func (compute expr1) (compute expr2)
+operation expr1 expr2 op = compute expr1 `op` compute expr2
