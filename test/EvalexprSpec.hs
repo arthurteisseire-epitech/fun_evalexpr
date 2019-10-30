@@ -38,9 +38,8 @@ spec = do
             evalExpr "3-3+2" `shouldBe` Just 2
         it "test expression with parentheses" $
             evalExpr "4 +   3 * ( 2         - 8   ) " `shouldBe` Just (-14)
---    describe "division" $ do
---        it "test sub" $
---            evalExpr "3/3" `shouldBe` Just 1
---        it "test sub2" $
---            evalExpr "(8+8)/4*3" `shouldBe` Just 12
---
+    describe "division" $ do
+        it "test sub" $
+            evalExpr "3/3" `shouldBe` Just 1
+        it "test sub2" $
+            evalExpr "(8+8)/4*3" `shouldBe` Just 12

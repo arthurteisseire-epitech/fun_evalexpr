@@ -44,14 +44,26 @@ substraction = do
     return Sub
 
 multitive :: ReadP Expr
-multitive = primaryPlusMultitive <|> primary
+multitive = do
+    expr <- primary
+    multitiveSuffix expr
 
-primaryPlusMultitive :: ReadP Expr
-primaryPlusMultitive = do
-    p <- primary
+multitiveSuffix :: Expr -> ReadP Expr
+multitiveSuffix expr = (do
+    mulOrDiv <- multiplication <|> division
+    m <- primary
+    multitiveSuffix $ mulOrDiv expr m)
+    <|> return expr
+
+multiplication :: ReadP (Expr -> Expr -> Expr)
+multiplication = do
     satisfy (== '*')
-    m <- multitive
-    return $ Mul p m
+    return Mul
+
+division :: ReadP (Expr -> Expr -> Expr)
+division = do
+    satisfy (== '/')
+    return Div
 
 additiveWithParentheses :: ReadP Expr
 additiveWithParentheses = do
