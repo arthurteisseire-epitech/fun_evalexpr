@@ -3,6 +3,7 @@ module EvalexprSpec where
 import Test.Hspec
 import Expression
 import ExprParser
+import Evalexpr
 
 main :: IO ()
 main = hspec spec

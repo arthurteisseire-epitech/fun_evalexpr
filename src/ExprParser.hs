@@ -6,13 +6,6 @@ import           Expression
 import           ParseUtils
 import           Text.ParserCombinators.ReadP
 
-evalExpr :: String -> Maybe Float
-evalExpr s
-    | isNothing p = Nothing
-    | otherwise = Just $ compute (fromJust p)
-  where
-    p = parseExpr (filter (/= ' ') s)
-
 parseExpr :: String -> Maybe Expr
 parseExpr s
     | null a = Nothing
