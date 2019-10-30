@@ -21,3 +21,7 @@ spec =
             parseExpr "+21.2" `shouldBe` Just (Val 21.2)
         it "test parsing float value with minus" $
             parseExpr "-21.2" `shouldBe` Just (Val (-21.2))
+        it "test parsing float value with exponent" $
+            parseExpr "2e3" `shouldBe` Just (Val 2000)
+        it "test parsing float value with exponent caps lock" $
+            parseExpr "2E3" `shouldBe` Just (Val 2000)

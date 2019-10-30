@@ -2,7 +2,6 @@ module ExprParser where
 
 import           Control.Applicative          ((<|>))
 import           Data.Maybe
-import           Debug.Trace
 import           Expression
 import           ParseUtils
 import           Text.ParserCombinators.ReadP
@@ -82,7 +81,8 @@ additiveWithParentheses = do
     return a
 
 decimal :: ReadP Expr
-decimal = Val . rd <$> integer <++> decimalPart
+decimal = Val . rd <$> integer <++> decimalPart <++> e
   where
     rd = read :: String -> Float
     decimalPart = option "" $ char '.' <:> number
+    e = option "" $ (char 'e' <|> char 'E') <:> integer

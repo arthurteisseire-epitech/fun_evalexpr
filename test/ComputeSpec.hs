@@ -1,4 +1,4 @@
-module ExpressionSpec where
+module ComputeSpec where
 
 
 import Test.Hspec
