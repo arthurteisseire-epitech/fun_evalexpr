@@ -43,3 +43,10 @@ spec = do
             evalExpr "3/3" `shouldBe` Just 1
         it "test sub2" $
             evalExpr "(8+8)/4*3" `shouldBe` Just 12
+    describe "power" $ do
+        it "test simple power" $
+            evalExpr "2^3" `shouldBe` Just 8
+        it "test priority power" $
+            evalExpr "2^3+2" `shouldBe` Just 10
+        it "test priority power2" $
+            evalExpr "2+2^(3+2)" `shouldBe` Just 34

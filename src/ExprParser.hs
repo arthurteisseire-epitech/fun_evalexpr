@@ -45,13 +45,13 @@ substraction = do
 
 multitive :: ReadP Expr
 multitive = do
-    expr <- primary
+    expr <- power
     multitiveSuffix expr
 
 multitiveSuffix :: Expr -> ReadP Expr
 multitiveSuffix expr = (do
     mulOrDiv <- multiplication <|> division
-    m <- primary
+    m <- power
     multitiveSuffix $ mulOrDiv expr m)
     <|> return expr
 
@@ -64,6 +64,12 @@ division :: ReadP (Expr -> Expr -> Expr)
 division = do
     satisfy (== '/')
     return Div
+
+power :: ReadP Expr
+power =
+    (do p1 <- primary
+        satisfy (== '^')
+        Pow p1 <$> primary) <|> primary
 
 primary :: ReadP Expr
 primary = additiveWithParentheses <|> decimal
