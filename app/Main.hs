@@ -1,7 +1,7 @@
 module Main where
 
 import           Data.Maybe
-import           ExprParser
+import           Evalexpr
 import           System.Environment
 import           System.Exit
 import           Text.Printf
