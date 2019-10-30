@@ -19,7 +19,13 @@ output f
 exec :: [String] -> Maybe Float
 exec s
     | length s /= 1 = Nothing
-    | otherwise = evalExpr $ head s
+    | otherwise =
+        if nb == inf
+            then Nothing
+            else nb
+  where
+    nb = evalExpr $ head s
+    inf = Just $ 1 / 0
 
 exitWithHelp :: IO ()
 exitWithHelp = do
