@@ -11,7 +11,7 @@ spec :: Spec
 spec = do
     describe "without spaces" $ do
         it "test parse addition" $
-            evalExpr "3+2" `shouldBe` Just 5
+            evalExpr "3-2-3" `shouldBe` Just (-2)
         it "test parse addition" $
             evalExpr "+3+2+5" `shouldBe` Just 10
         it "test parse multiplication" $
@@ -34,5 +34,13 @@ spec = do
             evalExpr " -3" `shouldBe` Just (-3)
         it "test sub" $
             evalExpr "3-3" `shouldBe` Just 0
+        it "test sub and add" $
+            evalExpr "3-3+2" `shouldBe` Just 2
         it "test expression with parentheses" $
             evalExpr "4 +   3 * ( 2         - 8   ) " `shouldBe` Just (-14)
+--    describe "division" $ do
+--        it "test sub" $
+--            evalExpr "3/3" `shouldBe` Just 1
+--        it "test sub2" $
+--            evalExpr "(8+8)/4*3" `shouldBe` Just 12
+--
