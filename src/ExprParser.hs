@@ -65,15 +65,15 @@ division = do
     satisfy (== '/')
     return Div
 
+primary :: ReadP Expr
+primary = additiveWithParentheses <|> decimal
+
 additiveWithParentheses :: ReadP Expr
 additiveWithParentheses = do
     satisfy (== '(')
     a <- additive
     satisfy (== ')')
     return a
-
-primary :: ReadP Expr
-primary = additiveWithParentheses <|> decimal
 
 decimal :: ReadP Expr
 decimal = Val . rd <$> integer <++> decimalPart
