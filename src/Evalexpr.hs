@@ -21,4 +21,4 @@ isStringValid :: String -> Bool
 isStringValid = all isCharValid
 
 isCharValid :: Char -> Bool
-isCharValid c = isDigit c || c `elem` "()^*/+-"
+isCharValid c = isDigit c || c `elem` "()^*/+-."
