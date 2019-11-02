@@ -14,7 +14,7 @@ main = do
 output :: Maybe Float -> IO ()
 output f
     | isNothing f = exitWithHelp
-    | otherwise = printf "%.2f\n" (fromJust f)
+    | otherwise = printf "%.2f\n" ((fromJust f) + 0.001)
 
 exec :: [String] -> Maybe Float
 exec s
