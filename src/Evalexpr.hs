@@ -24,7 +24,11 @@ isStringValid s =
     not (isLastCharAnOperator s) &&
     not (parenthesis `isInfixOf` s) &&
     not (")(" `isInfixOf` s) &&
-    not (isChainedOperators s)
+    not (isChainedOperators s) &&
+    isSameNumberOfParenthesis s
+
+isSameNumberOfParenthesis :: String -> Bool
+isSameNumberOfParenthesis s = length (filter (== '(') s) == length (filter (== ')') s)
 
 isChainedOperators :: String -> Bool
 isChainedOperators s = any (belong s) allOperatorsCombination
