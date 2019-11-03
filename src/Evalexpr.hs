@@ -37,7 +37,7 @@ belong :: String -> String -> Bool
 belong s1 s2 = s2 `isInfixOf` s1
 
 doubleOperators :: [String]
-doubleOperators = ["++", "--", "**", "^^", "//"]
+doubleOperators = ["++", "--", "**", "^^", "..", "//", "*/", "/*", "^*", "*^", "^/", "/^"]
 
 isLastCharAnOperator :: String -> Bool
 isLastCharAnOperator s = last s `elem` operators
