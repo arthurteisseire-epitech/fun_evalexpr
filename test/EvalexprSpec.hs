@@ -10,6 +10,19 @@ main = hspec spec
 
 spec :: Spec
 spec = do
+    describe "error management" $ do
+        it "test plus + blank" $
+            evalExpr "3 + " `shouldBe` Nothing
+        it "test minus + blank" $
+            evalExpr "3 - " `shouldBe` Nothing
+        it "test product + blank" $
+            evalExpr "3 * " `shouldBe` Nothing
+        it "test division + blank" $
+            evalExpr "3 / " `shouldBe` Nothing
+        it "test power + blank" $
+            evalExpr "3 ^ " `shouldBe` Nothing
+        it "test parenthesis + blank" $
+            evalExpr "(3) + " `shouldBe` Nothing
     describe "without spaces" $ do
         it "test parse addition" $
             evalExpr "3-2-3" `shouldBe` Just (-2)

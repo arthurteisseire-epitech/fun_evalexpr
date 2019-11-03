@@ -18,7 +18,13 @@ parseStr s
     str = filter (/= ' ') s
 
 isStringValid :: String -> Bool
-isStringValid = all isCharValid
+isStringValid s = all isCharValid s && not (isLastCharAnOperator s)
+
+isLastCharAnOperator :: String -> Bool
+isLastCharAnOperator s = last s `elem` operators
 
 isCharValid :: Char -> Bool
-isCharValid c = isDigit c || c `elem` "()^*/+-."
+isCharValid c = isDigit c || c `elem` (operators ++ "()")
+
+operators :: String
+operators = "^*/+-."
