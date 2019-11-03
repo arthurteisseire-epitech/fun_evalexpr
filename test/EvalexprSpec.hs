@@ -23,6 +23,10 @@ spec = do
             evalExpr "3 ^ " `shouldBe` Nothing
         it "test parenthesis + blank" $
             evalExpr "(3) + " `shouldBe` Nothing
+        it "test empty parenthesis" $
+            evalExpr "3 + ()" `shouldBe` Nothing
+        it "test empty reverse parenthesis" $
+            evalExpr "3 + )(" `shouldBe` Nothing
     describe "without spaces" $ do
         it "test parse addition" $
             evalExpr "3-2-3" `shouldBe` Just (-2)

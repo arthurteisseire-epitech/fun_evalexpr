@@ -1,6 +1,7 @@
 module Evalexpr where
 
 import           Data.Char                    (isDigit)
+import           Data.List
 import           Data.Maybe
 import           Expression
 import           ExprParser
@@ -18,13 +19,17 @@ parseStr s
     str = filter (/= ' ') s
 
 isStringValid :: String -> Bool
-isStringValid s = all isCharValid s && not (isLastCharAnOperator s)
+isStringValid s =
+    all isCharValid s && not (isLastCharAnOperator s) && not (parenthesis `isInfixOf` s) && not (")(" `isInfixOf` s)
 
 isLastCharAnOperator :: String -> Bool
 isLastCharAnOperator s = last s `elem` operators
 
 isCharValid :: Char -> Bool
-isCharValid c = isDigit c || c `elem` (operators ++ "()")
+isCharValid c = isDigit c || c `elem` (operators ++ parenthesis)
 
 operators :: String
 operators = "^*/+-."
+
+parenthesis :: String
+parenthesis = "()"
