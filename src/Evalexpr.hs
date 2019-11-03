@@ -31,13 +31,13 @@ isSameNumberOfParenthesis :: String -> Bool
 isSameNumberOfParenthesis s = length (filter (== '(') s) == length (filter (== ')') s)
 
 isChainedOperators :: String -> Bool
-isChainedOperators s = any (belong s) allOperatorsCombination
+isChainedOperators s = any (belong s) doubleOperators
 
 belong :: String -> String -> Bool
 belong s1 s2 = s2 `isInfixOf` s1
 
-allOperatorsCombination :: [String]
-allOperatorsCombination = [[x, y] | x <- operators, y <- operators]
+doubleOperators :: [String]
+doubleOperators = ["++", "--", "**", "^^", "//"]
 
 isLastCharAnOperator :: String -> Bool
 isLastCharAnOperator s = last s `elem` operators
