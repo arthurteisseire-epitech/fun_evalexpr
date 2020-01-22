@@ -1,6 +1,6 @@
 module Evalexpr where
 
-import           Data.Char                    (isDigit)
+import           Data.Char                    (isDigit, isSpace)
 import           Data.List
 import           Data.Maybe
 import           Expression
@@ -16,7 +16,7 @@ parseStr s
     | isStringValid str = Just str
     | otherwise = Nothing
   where
-    str = filter (/= ' ') s
+    str = filter (not . isSpace) s
 
 isStringValid :: String -> Bool
 isStringValid s =
