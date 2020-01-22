@@ -17,11 +17,10 @@ additive :: ReadP Expr
 additive = multitive >>= additiveSuffix
 
 additiveSuffix :: Expr -> ReadP Expr
-additiveSuffix expr = (do
+additiveSuffix expr = option expr (do
     addOrSub <- addition <|> substraction
     m <- multitive
     additiveSuffix $ addOrSub expr m)
-    <|> return expr
 
 addition :: ReadP (Expr -> Expr -> Expr)
 addition = do
@@ -37,11 +36,10 @@ multitive :: ReadP Expr
 multitive = power >>= multitiveSuffix
 
 multitiveSuffix :: Expr -> ReadP Expr
-multitiveSuffix expr = (do
+multitiveSuffix expr = option expr (do
     mulOrDiv <- multiplication <|> division
     m <- power
     multitiveSuffix $ mulOrDiv expr m)
-    <|> return expr
 
 multiplication :: ReadP (Expr -> Expr -> Expr)
 multiplication = do
