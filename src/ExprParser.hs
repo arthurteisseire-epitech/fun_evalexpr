@@ -14,9 +14,7 @@ parseExpr s
     a = readP_to_S additive s
 
 additive :: ReadP Expr
-additive = do
-    expr <- multitive
-    additiveSuffix expr
+additive = multitive >>= additiveSuffix
 
 additiveSuffix :: Expr -> ReadP Expr
 additiveSuffix expr = (do
@@ -36,9 +34,7 @@ substraction = do
     return Sub
 
 multitive :: ReadP Expr
-multitive = do
-    expr <- power
-    multitiveSuffix expr
+multitive = power >>= multitiveSuffix
 
 multitiveSuffix :: Expr -> ReadP Expr
 multitiveSuffix expr = (do
